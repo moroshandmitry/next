@@ -1,16 +1,26 @@
-import { SellerField } from '@/app/lib/definitions';
 import Link from 'next/link';
+
+import { createInvoice } from '@/app/lib/actions';
+
 import {
   CheckIcon,
   ClockIcon,
-  CurrencyDollarIcon,
   UserCircleIcon,
+  CurrencyDollarIcon,
 } from '@heroicons/react/24/outline';
 import { Button } from '@/app/ui/button';
 
-export default function Form({ sellers }: { sellers: SellerField[] }) {
+import type { SellerField } from '@/app/lib/definitions';
+
+interface IFormProps {
+  sellers: SellerField[];
+}
+
+const Form: React.FC<IFormProps> = (props) => {
+  const { sellers } = props;
+
   return (
-    <form>
+    <form action={createInvoice}>
       <div className="rounded-md bg-neutral-700 p-4 md:p-6">
         <div className="mb-4">
           <label
@@ -21,10 +31,11 @@ export default function Form({ sellers }: { sellers: SellerField[] }) {
           </label>
           <div className="relative">
             <select
+              required
               id="seller"
+              defaultValue=""
               name="sellerId"
               className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
-              defaultValue=""
             >
               <option value="" disabled>
                 Select a seller
@@ -49,10 +60,11 @@ export default function Form({ sellers }: { sellers: SellerField[] }) {
           <div className="relative mt-2 rounded-md">
             <div className="relative">
               <input
+                required
                 id="amount"
+                step="0.01"
                 name="amount"
                 type="number"
-                step="0.01"
                 placeholder="Enter USD amount"
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
               />
@@ -69,9 +81,10 @@ export default function Form({ sellers }: { sellers: SellerField[] }) {
             <div className="flex gap-4">
               <div className="flex items-center">
                 <input
+                  required
                   id="awaiting"
-                  name="status"
                   type="radio"
+                  name="status"
                   value="awaiting"
                   className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
                 />
@@ -84,9 +97,10 @@ export default function Form({ sellers }: { sellers: SellerField[] }) {
               </div>
               <div className="flex items-center">
                 <input
-                  id="fulfilled"
-                  name="status"
+                  required
                   type="radio"
+                  name="status"
+                  id="fulfilled"
                   value="fulfilled"
                   className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
                 />
@@ -112,4 +126,6 @@ export default function Form({ sellers }: { sellers: SellerField[] }) {
       </div>
     </form>
   );
-}
+};
+
+export default Form;

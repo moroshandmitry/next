@@ -1,4 +1,4 @@
-import { Income } from './definitions';
+import type { Income } from './definitions';
 
 /**
  * Formats a given amount in cents into a currency string (USD).

@@ -14,9 +14,9 @@ export type Seller = {
 
 export type Invoice = {
   id: string;
-  seller: string;
-  amount: number;
   date: string;
+  amount: number;
+  seller: string;
   status: 'awaiting' | 'fulfilled';
 };
 
@@ -28,9 +28,9 @@ export type Income = {
 export type LatestInvoice = {
   id: string;
   name: string;
-  image_url: string;
   email: string;
   amount: string;
+  image_url: string;
 };
 
 export type LatestInvoiceRaw = Omit<LatestInvoice, 'amount'> & {
@@ -39,12 +39,12 @@ export type LatestInvoiceRaw = Omit<LatestInvoice, 'amount'> & {
 
 export type InvoicesTable = {
   id: string;
-  seller_id: string;
   name: string;
-  email: string;
-  image_url: string;
   date: string;
+  email: string;
   amount: number;
+  seller_id: string;
+  image_url: string;
   status: 'awaiting' | 'fulfilled';
 };
 
@@ -75,7 +75,7 @@ export type SellerField = {
 
 export type InvoiceForm = {
   id: string;
-  seller_id: string;
   amount: number;
+  seller_id: string;
   status: 'awaiting' | 'fulfilled';
 };

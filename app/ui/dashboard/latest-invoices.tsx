@@ -1,14 +1,15 @@
-import { ArrowPathIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 import Image from 'next/image';
-import { poppins } from '@/app/ui/fonts';
-import { LatestInvoice } from '@/app/lib/definitions';
 
-export default async function LatestInvoices({
-  latestInvoices,
-}: {
-  latestInvoices: LatestInvoice[];
-}) {
+import { fetchLatestInvoices } from '@/app/lib/data';
+
+import { ArrowPathIcon } from '@heroicons/react/24/outline';
+
+import { poppins } from '@/app/ui/fonts';
+
+const LatestInvoices: React.FC = async () => {
+  const latestInvoices = await fetchLatestInvoices();
+
   return (
     <div className="flex w-full flex-col md:col-span-4">
       <h2
@@ -17,9 +18,7 @@ export default async function LatestInvoices({
         Latest Invoices
       </h2>
       <div className="flex grow flex-col justify-between rounded-xl bg-neutral-700 p-4">
-        {/* Attention! Uncomment this section when you reach this stage in the course. */}
-
-        {/* <div className="bg-neutral-00 px-6">
+        <div className="bg-neutral-00 px-6">
           {latestInvoices.map((invoice, i) => {
             return (
               <div
@@ -56,7 +55,7 @@ export default async function LatestInvoices({
               </div>
             );
           })}
-        </div> */}
+        </div>
 
         <div className="flex items-center pb-2 pt-6">
           <ArrowPathIcon className="h-5 w-5 text-white" />
@@ -65,4 +64,6 @@ export default async function LatestInvoices({
       </div>
     </div>
   );
-}
+};
+
+export default LatestInvoices;

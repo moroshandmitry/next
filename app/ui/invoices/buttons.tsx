@@ -1,11 +1,14 @@
-import {
-  PencilSquareIcon,
-  PlusCircleIcon,
-  TrashIcon,
-} from '@heroicons/react/24/outline';
+import { deleteInvoice } from '@/app/lib/actions';
+
 import Link from 'next/link';
 
-export function CreateInvoice() {
+import {
+  TrashIcon,
+  PlusCircleIcon,
+  PencilSquareIcon,
+} from '@heroicons/react/24/outline';
+
+export const CreateInvoice: React.FC = () => {
   return (
     <Link
       href="/dashboard/invoices/create"
@@ -15,9 +18,9 @@ export function CreateInvoice() {
       <PlusCircleIcon className="h-8 md:ml-4" />
     </Link>
   );
-}
+};
 
-export function UpdateInvoice({ id }: { id: string }) {
+export const UpdateInvoice: React.FC<{ id: string }> = ({ id }) => {
   return (
     <Link
       href={`/dashboard/invoices/${id}/edit`}
@@ -26,15 +29,17 @@ export function UpdateInvoice({ id }: { id: string }) {
       <PencilSquareIcon className="w-5" />
     </Link>
   );
-}
+};
 
-export function DeleteInvoice({ id }: { id: string }) {
+export const DeleteInvoice: React.FC<{ id: string }> = ({ id }) => {
+  const deleteInvoiceWithId = deleteInvoice.bind(null, id);
+
   return (
-    <>
+    <form action={deleteInvoiceWithId}>
       <button className="rounded-md border bg-sky-700 p-2 text-white hover:bg-white hover:text-neutral-900">
         <span className="sr-only">Delete</span>
         <TrashIcon className="w-5" />
       </button>
-    </>
+    </form>
   );
-}
+};

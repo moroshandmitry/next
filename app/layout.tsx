@@ -1,11 +1,10 @@
-import '@/app/ui/global.css';
 import { poppins } from './ui/fonts';
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+import '@/app/ui/global.css';
+
+const RootLayout: React.FC<React.PropsWithChildren> = (props) => {
+  const { children } = props;
+
   return (
     <html lang="en">
       <body className={`${poppins.className} bg-black antialiased`}>
@@ -13,4 +12,6 @@ export default function RootLayout({
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;

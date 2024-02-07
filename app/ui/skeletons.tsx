@@ -1,7 +1,7 @@
 const shimmer =
   'before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/60 before:to-transparent';
 
-export function CardSkeleton() {
+const CardSkeleton: React.FC = () => {
   return (
     <div
       className={`${shimmer} relative overflow-hidden rounded-xl bg-neutral-700 p-2 shadow-sm`}
@@ -15,9 +15,9 @@ export function CardSkeleton() {
       </div>
     </div>
   );
-}
+};
 
-export function CardsSkeleton() {
+const CardsSkeleton: React.FC = () => {
   return (
     <>
       <CardSkeleton />
@@ -26,9 +26,9 @@ export function CardsSkeleton() {
       <CardSkeleton />
     </>
   );
-}
+};
 
-export function IncomeChartSkeleton() {
+const IncomeChartSkeleton: React.FC = () => {
   return (
     <div className={`${shimmer} relative w-full overflow-hidden md:col-span-4`}>
       <div className="mb-4 h-8 w-36 rounded-md bg-neutral-700" />
@@ -41,9 +41,9 @@ export function IncomeChartSkeleton() {
       </div>
     </div>
   );
-}
+};
 
-export function InvoiceSkeleton() {
+const InvoiceSkeleton: React.FC = () => {
   return (
     <div className="flex flex-row items-center justify-between border-b border-gray-100 py-4">
       <div className="flex items-center">
@@ -56,9 +56,9 @@ export function InvoiceSkeleton() {
       <div className="mt-2 h-4 w-12 rounded-md bg-neutral-700" />
     </div>
   );
-}
+};
 
-export function LatestInvoicesSkeleton() {
+const LatestInvoicesSkeleton: React.FC = () => {
   return (
     <div
       className={`${shimmer} relative flex w-full flex-col overflow-hidden md:col-span-4`}
@@ -79,29 +79,9 @@ export function LatestInvoicesSkeleton() {
       </div>
     </div>
   );
-}
+};
 
-export default function DashboardSkeleton() {
-  return (
-    <>
-      <div
-        className={`${shimmer} relative mx-auto mb-4 h-8 w-36 overflow-hidden rounded-md bg-neutral-700`}
-      />
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        <CardSkeleton />
-        <CardSkeleton />
-        <CardSkeleton />
-        <CardSkeleton />
-      </div>
-      <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8">
-        <IncomeChartSkeleton />
-        <LatestInvoicesSkeleton />
-      </div>
-    </>
-  );
-}
-
-export function TableRowSkeleton() {
+const TableRowSkeleton: React.FC = () => {
   return (
     <tr className="w-full border-b border-neutral-700 last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg">
       <td className="relative overflow-hidden whitespace-nowrap py-3 pl-6 pr-3">
@@ -135,9 +115,9 @@ export function TableRowSkeleton() {
       </td>
     </tr>
   );
-}
+};
 
-export function InvoicesMobileSkeleton() {
+const InvoicesMobileSkeleton: React.FC = () => {
   return (
     <div className="mb-2 w-full rounded-md bg-sky-700 p-4">
       <div className="flex items-center justify-between border-b border-neutral-700 pb-8">
@@ -159,9 +139,9 @@ export function InvoicesMobileSkeleton() {
       </div>
     </div>
   );
-}
+};
 
-export function InvoicesTableSkeleton() {
+const InvoicesTableSkeleton: React.FC = () => {
   return (
     <div className="mt-6 flow-root">
       <div className="inline-block min-w-full align-middle">
@@ -213,4 +193,37 @@ export function InvoicesTableSkeleton() {
       </div>
     </div>
   );
-}
+};
+
+const DashboardSkeleton: React.FC = () => {
+  return (
+    <>
+      <div
+        className={`${shimmer} relative mx-auto mb-4 h-8 w-36 overflow-hidden rounded-md bg-neutral-700`}
+      />
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
+      </div>
+      <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8">
+        <IncomeChartSkeleton />
+        <LatestInvoicesSkeleton />
+      </div>
+    </>
+  );
+};
+
+export {
+  CardSkeleton,
+  CardsSkeleton,
+  InvoiceSkeleton,
+  TableRowSkeleton,
+  IncomeChartSkeleton,
+  InvoicesTableSkeleton,
+  LatestInvoicesSkeleton,
+  InvoicesMobileSkeleton,
+};
+
+export default DashboardSkeleton;

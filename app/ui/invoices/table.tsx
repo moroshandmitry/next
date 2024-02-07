@@ -1,16 +1,19 @@
 import Image from 'next/image';
-import { UpdateInvoice, DeleteInvoice } from '@/app/ui/invoices/buttons';
-import InvoiceStatus from '@/app/ui/invoices/status';
-import { formatDateToLocal, formatCurrency } from '@/app/lib/utils';
-import { fetchFilteredInvoices } from '@/app/lib/data';
 
-export default async function InvoicesTable({
-  query,
-  currentPage,
-}: {
+import { fetchFilteredInvoices } from '@/app/lib/data';
+import { formatDateToLocal, formatCurrency } from '@/app/lib/utils';
+
+import InvoiceStatus from '@/app/ui/invoices/status';
+import { UpdateInvoice, DeleteInvoice } from '@/app/ui/invoices/buttons';
+
+interface IInvoiceTableProps {
   query: string;
   currentPage: number;
-}) {
+}
+
+const InvoicesTable: React.FC<IInvoiceTableProps> = async (props) => {
+  const { query, currentPage } = props;
+
   const invoices = await fetchFilteredInvoices(query, currentPage);
 
   return (
@@ -27,10 +30,10 @@ export default async function InvoicesTable({
                   <div>
                     <div className="mb-2 flex items-center">
                       <Image
-                        src={invoice.image_url}
-                        className="mr-2 rounded-full"
                         width={28}
                         height={28}
+                        src={invoice.image_url}
+                        className="mr-2 rounded-full"
                         alt={`${invoice.name}'s profile picture`}
                       />
                       <p>{invoice.name}</p>
@@ -104,10 +107,10 @@ export default async function InvoicesTable({
                   <td className="text-m whitespace-nowrap py-3 pl-6 pr-3 text-white">
                     <div className="flex items-center gap-3">
                       <Image
-                        src={invoice.image_url}
-                        className="rounded-full"
                         width={32}
                         height={32}
+                        src={invoice.image_url}
+                        className="rounded-full"
                         alt={`${invoice.name}'s profile picture`}
                       />
                       <p>{invoice.name}</p>
@@ -139,4 +142,6 @@ export default async function InvoicesTable({
       </div>
     </div>
   );
-}
+};
+
+export default InvoicesTable;
